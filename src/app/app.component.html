@@ -16,24 +16,27 @@
       type="text" 
       class="form-control" 
       formControlName ="firstName"
+      pattern="^[a-zA-Z0-9]+$"
       [class.is-invalid] ="!myForm.get('firstName').valid&&myForm.get('firstName').touched" >
-    <div>
-    <small 
+    <div
     *ngIf="!myForm.get('firstName').valid&&myForm.get('firstName').touched" 
     class="form-text text-danger">
-    Please enter First Name 
-    </small>
-      <small 
-    *ngIf="!myForm.get('firstName').valid&&myForm.get('firstName').touched" 
+     <small 
+    *ngIf="myForm.get('firstName').errors.required" 
     class="alert alert-danger">
-    At least 1 characters 
+      Please enter first Name 
     </small>
      <small 
-    *ngIf="!myForm.get('firstName').valid&&myForm.get('firstName').touched" 
+    *ngIf="!myForm.get('firstName').errors.minLength" 
+    class="alert alert-danger">
+    At least 2 characters 
+    </small>
+    <small 
+    *ngIf="myForm.get('firstName').errors.pattern" 
     class="alert alert-danger">
     no numbers or special characters 
     </small>
-    
+     </div>  
   </div>
   <div class="form-group">
     <label>Last Name</label>
